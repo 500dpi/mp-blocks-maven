@@ -65,7 +65,6 @@ public class Lines implements AsciiBlock {
   // +--------------------+------------------------------------------
   // | AsciiBlock methods |
   // +--------------------+
-
   /**
    * Get one row from the block.
    *
