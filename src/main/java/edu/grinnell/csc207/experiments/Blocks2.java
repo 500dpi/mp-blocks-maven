@@ -2,9 +2,11 @@ package edu.grinnell.csc207.experiments;
 
 import edu.grinnell.csc207.blocks.AsciiBlock;
 import edu.grinnell.csc207.blocks.Boxed;
+import edu.grinnell.csc207.blocks.HComp;
 import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.Surrounded;
+import edu.grinnell.csc207.blocks.VAlignment;
 
 import java.io.PrintWriter;
 
@@ -49,10 +51,14 @@ public class Blocks2 {
 
         Line line = new Line("Hello");
         Rect exes = new Rect('X', 3, 3);
+        Rect a = new Rect('a', 5, 2);
+        Rect b = new Rect('b', 3, 3);
+        Rect c = new Rect('c', 2, 6);
         AsciiBlock boxedLine = new Boxed(line);
         AsciiBlock boxedboxedLine = new Boxed(boxedLine);
         AsciiBlock boxedExes = new Boxed(exes);
         AsciiBlock SurroundedXY =  new Boxed(new Surrounded(boxedExes, 'y'));
+        AsciiBlock HAligmentTest = new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c});
     
         pen.println("Original Values");
         figure(pen, "line", line);
@@ -61,6 +67,8 @@ public class Blocks2 {
         figure(pen, "boxedboxedLine", boxedboxedLine);
         figure(pen, "boxedExes", boxedExes);
         figure(pen, "Surrounded boxed exes", SurroundedXY);
+        figure(pen, "Surrounded boxed exes", HAligmentTest);
+
 
     }
 
