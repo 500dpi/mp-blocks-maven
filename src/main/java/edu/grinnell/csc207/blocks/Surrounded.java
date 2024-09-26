@@ -29,10 +29,10 @@ public class Surrounded implements AsciiBlock {
    * Build a new block with the specified contents.
    *
    * @param blockContents
-   *   The contents of the block.
+   *                      The contents of the block.
    *
    * @param theChar
-   *   The character that we use to surround the block.
+   *                      The character that we use to surround the block.
    */
   public Surrounded(AsciiBlock blockContents, char theChar) {
     this.contents = blockContents;
@@ -51,10 +51,16 @@ public class Surrounded implements AsciiBlock {
    * @return row i.
    *
    * @exception Exception
-   *   If the row is invalid.
+   *                      If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if ((i == 0) || (i == this.height() - 1)) {
+      return (this.surroundChar.repeat(this.contents.width() + 2));
+    } else if ((i > 0) && (i <= this.height())) {
+      return (this.surroundChar + this.contents.row(i - 1) + this.surroundChar);
+    } else {
+      throw new Exception("Invalid row " + i);
+    } // if/else
   } // row(int)
 
   /**
@@ -63,7 +69,8 @@ public class Surrounded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+
+    return this.contents.height() +2; // STUB
   } // height()
 
   /**
@@ -72,19 +79,19 @@ public class Surrounded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.contents.width() +2; // STUB
   } // width()
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other
-   *   The block to compare to this block.
+   *              The block to compare to this block.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return false; // STUB
   } // eqv(AsciiBlock)
 } // class Surrounded

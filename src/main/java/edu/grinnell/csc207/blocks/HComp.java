@@ -80,7 +80,15 @@ public class HComp implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    int max = 0;
+    for (int i = 0;  i < this.blocks.length; i++){
+      if (this.blocks[i].height() > max){
+        max = this.blocks[i].height();
+      }
+
+    }
+    
+    return max;   // STUB
   } // height()
 
   /**
@@ -89,7 +97,12 @@ public class HComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    int sum = 0;
+    for (int i = 0;  i < this.blocks.length; i++){
+      sum += this.blocks[i].width();
+    }
+    
+    return sum;   // STUB
   } // width()
 
   /**

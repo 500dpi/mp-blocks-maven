@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A grid of a single text block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Jana and Sarah :)
  */
 public class Grid implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -34,11 +34,11 @@ public class Grid implements AsciiBlock {
    * Build a new grid with the specified arrangement.
    *
    * @param gridElement
-   *   The element in the grid.
+   *                         The element in the grid.
    * @param horizRepetitions
-   *   The number of horizontal repetitions in the grid.
+   *                         The number of horizontal repetitions in the grid.
    * @param vertRepetitions
-   *   THe number of vertical repetitions in the grid.
+   *                         THe number of vertical repetitions in the grid.
    */
   public Grid(AsciiBlock gridElement, int horizRepetitions,
       int vertRepetitions) {
@@ -59,10 +59,19 @@ public class Grid implements AsciiBlock {
    * @return row i.
    *
    * @exception Exception
-   *   If the row is invalid.
+   *                      If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if ((i >= 0) && (i < this.height())) {
+      int elementI = i % (this.element.height());
+      return this.element.row(elementI).repeat(this.hreps);
+
+
+    } else {
+      throw new Exception("Invalid row " + i);
+
+    }
+
   } // row(int)
 
   /**
@@ -71,7 +80,7 @@ public class Grid implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.element.height()*this.vreps; // STUB
   } // height()
 
   /**
@@ -80,17 +89,17 @@ public class Grid implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.element.width()*this.hreps; // STUB
   } // width()
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other
-   *   The block to compare to this block.
+   *              The block to compare to this block.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof Grid) && (this.eqv((Grid) other)));
@@ -100,10 +109,10 @@ public class Grid implements AsciiBlock {
    * Determine if another grid is structurally equivalent to this grid.
    *
    * @param other
-   *   The grid to compare to this grid.
+   *              The grid to compare to this grid.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
   public boolean eqv(Grid other) {
     return (this.hreps == other.hreps) && (this.vreps == other.hreps)
