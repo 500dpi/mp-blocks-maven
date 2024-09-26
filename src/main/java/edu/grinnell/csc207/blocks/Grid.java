@@ -63,14 +63,14 @@ public class Grid implements AsciiBlock {
    */
   public String row(int i) throws Exception {
     if ((i >= 0) && (i < this.height())) {
-      int elementI = i % (this.element.height());
-      return this.element.row(elementI).repeat(this.hreps);
+      int elementI = i % (this.element.height()); // find the remainder of i and the width of a block to determine what line of the blocks to pull
+      return this.element.row(elementI).repeat(this.hreps); // repeat the blocsk as many itterations as you have
 
 
     } else {
       throw new Exception("Invalid row " + i);
 
-    }
+    }// exception
 
   } // row(int)
 
