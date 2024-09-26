@@ -1,10 +1,12 @@
 package edu.grinnell.csc207.blocks;
 
+import java.io.PrintWriter;
+
 /**
  * A horizontally flipped ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Sara Jaljaa
  */
 public class HFlip implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -45,8 +47,36 @@ public class HFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    int w = this.width();
+    PrintWriter pen = new PrintWriter(System.out, true);
+    if (i > 0 && i < w) {
+      char[] flip = this.block.row(i).toCharArray();
+      int length = this.block.row(i).length();
+      char current;
+      for (int index = 0; index < length / 2; ) {
+        current = this.block.row(i).charAt(index);
+        flip[index] = flip[(length - 1) - index];
+        flip[(length - 1) - index] = current;
+        pen.println(flip.toString());
+      }
+      return flip.toString();
+    } else {
+      throw new Exception("Invalid row " + i);
+    }
   } // row(int)
+
+  // public static void main(String[] args) {
+  //   PrintWriter pen = new PrintWriter(System.out, true);
+
+  //   HFlip line = new HFlip(new Line("Hello"));
+  //   // HFlip(line.row(0));
+  //   try {
+  //   AsciiBlock.print(pen, line);
+  //   } catch (Exception e) {
+  //     System.err.println("Didn't work.");
+  //   }
+  //   // AsciiBlock.print(pen, (line.row(0)));
+  // }
 
   /**
    * Determine how many rows are in the block.
@@ -54,7 +84,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.block.height();
   } // height()
 
   /**
@@ -63,7 +93,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.block.width();
   } // width()
 
   /**
