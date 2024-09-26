@@ -49,7 +49,7 @@ public class HFlip implements AsciiBlock {
   public String row(int i) throws Exception {
     int w = this.width();
     PrintWriter pen = new PrintWriter(System.out, true);
-    if (i > 0 && i < w) {
+    if (i > 0 && i <= w) {
       char[] flip = this.block.row(i).toCharArray();
       int length = this.block.row(i).length();
       char current;
@@ -57,7 +57,7 @@ public class HFlip implements AsciiBlock {
         current = this.block.row(i).charAt(index);
         flip[index] = flip[(length - 1) - index];
         flip[(length - 1) - index] = current;
-        pen.println(flip.toString());
+        // pen.println(flip.toString());
       }
       return flip.toString();
     } else {
@@ -68,10 +68,11 @@ public class HFlip implements AsciiBlock {
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
 
-    HFlip line = new HFlip(new Line("Hello"));
+    Lines test = new Lines("Test");
+    
     // AsciiBlock.print(pen, line);
     try {
-    AsciiBlock.print(pen, line);
+    AsciiBlock.print(pen, test);
     } catch (Exception e) {
       System.err.println("Didn't work.");
     }
