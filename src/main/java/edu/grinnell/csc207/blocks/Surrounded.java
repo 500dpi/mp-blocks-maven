@@ -93,6 +93,15 @@ public class Surrounded implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
-  } // eqv(AsciiBlock)
+    if (this.height() != other.height()){
+      return false;
+    }
+
+    for (int i = 0;  i <height(); i++){
+      if (0 != (this.row(i).compareTo(other.row(i)))){
+        return false;
+      }
+    }
+    return true;        // STUB
+  } 
 } // class Surrounded
