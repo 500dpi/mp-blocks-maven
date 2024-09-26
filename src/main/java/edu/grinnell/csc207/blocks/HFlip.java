@@ -65,18 +65,18 @@ public class HFlip implements AsciiBlock {
     }
   } // row(int)
 
-  // public static void main(String[] args) {
-  //   PrintWriter pen = new PrintWriter(System.out, true);
+  public static void main(String[] args) {
+    PrintWriter pen = new PrintWriter(System.out, true);
 
-  //   HFlip line = new HFlip(new Line("Hello"));
-  //   // HFlip(line.row(0));
-  //   try {
-  //   AsciiBlock.print(pen, line);
-  //   } catch (Exception e) {
-  //     System.err.println("Didn't work.");
-  //   }
-  //   // AsciiBlock.print(pen, (line.row(0)));
-  // }
+    HFlip line = new HFlip(new Line("Hello"));
+    // AsciiBlock.print(pen, line);
+    try {
+    AsciiBlock.print(pen, line);
+    } catch (Exception e) {
+      System.err.println("Didn't work.");
+    }
+    // AsciiBlock.print(pen, (line.row(0)));
+  }
 
   /**
    * Determine how many rows are in the block.
