@@ -165,6 +165,14 @@ public class HComp implements AsciiBlock {
    *         false otherwise.
    */
   public boolean eqv(HComp other) {
-    return (this.blocks == other.blocks) && (this.align == other.align);
-  } // eqv(Grid)
+    if (this.align == other.align) {
+      for (int i = 0; i < this.blocks.length; i++) {
+        if (!(this.blocks[i].eqv(other.blocks[i]))) {
+          return false;
+        } // if
+      } // for
+      return true;
+    } // if
+    return false;
+  } // eqv(AsciiBlock)
 } // class Grid
