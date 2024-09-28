@@ -81,7 +81,11 @@ public class VComp implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    int height = 0;
+    for (int i = 0; i< this.blocks.length; i++){
+      height += this.blocks[i].height();
+    }
+    return height;   // STUB
   } // height()
 
   /**
@@ -90,19 +94,39 @@ public class VComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    int width = 0;
+    for (int i = 0; i< this.blocks.length; i++){
+      if (this.blocks[i].width() > width){
+        width  = this.blocks[i].width();
+      }//
+    }
+    return width; 
+
   } // width()
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other
-   *   The block to compare to this block.
+   *              The block to compare to this block.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof VComp) && (this.eqv((VComp) other)));
   } // eqv(AsciiBlock)
-} // class VComp
+
+  /**
+   * Determine if another Hblock is structurally equivalent to this grid.
+   *
+   * @param other
+   *              The Hblock to compare to this Hblock.
+   *
+   * @return true if the two blocks are structurally equivalent and
+   *         false otherwise.
+   */
+  public boolean eqv(VComp other) {
+    return (this.blocks == other.blocks) && (this.align == other.align);
+  } // eqv(Grid)
+} // class Grid

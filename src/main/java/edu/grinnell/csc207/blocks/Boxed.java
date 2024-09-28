@@ -76,7 +76,7 @@ public class Boxed implements AsciiBlock {
   /**
    * Determine how many rows are in the block.
    *
-   * @return the number of rows
+   * @return the number of rowseqv
    */
   public int height() {
     return 2 + this.contents.height();
@@ -101,8 +101,10 @@ public class Boxed implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Boxed) && (this.eqv((Boxed) other)));
   } // eqv(AsciiBlock)
+
+
 
   /**
    * Determine if another Boxed is structurally equivalent to this block.// current = this.block.row(i).charAt(index);
