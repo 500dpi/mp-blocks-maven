@@ -45,7 +45,7 @@ public class VFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    return block.row(block.height() - i - 1);
+    return this.block.row(this.block.height() - i - 1);
   } // row(int)
 
   /**
@@ -54,7 +54,7 @@ public class VFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return block.height();
+    return this.block.height();
   } // height()
 
   /**
@@ -63,7 +63,7 @@ public class VFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return block.width();
+    return this.block.width();
   } // width()
 
   /**

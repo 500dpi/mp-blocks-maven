@@ -60,7 +60,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return block.height();
+    return this.block.height();
   } // height()
 
   /**
@@ -69,7 +69,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return block.width();
+    return this.block.width();
   } // width()
 
   /**
