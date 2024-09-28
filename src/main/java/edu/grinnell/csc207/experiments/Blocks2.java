@@ -7,6 +7,7 @@ import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.Surrounded;
 import edu.grinnell.csc207.blocks.VAlignment;
+import edu.grinnell.csc207.blocks.HFlip;
 
 import java.io.PrintWriter;
 
@@ -59,6 +60,11 @@ public class Blocks2 {
         AsciiBlock boxedExes = new Boxed(exes);
         AsciiBlock SurroundedXY =  new Boxed(new Surrounded(boxedExes, 'y'));
         AsciiBlock HAligmentTest = new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c});
+        AsciiBlock testing = new HFlip(new Line("Testing"));
+
+        pen.print("\n");
+        AsciiBlock.print(pen, testing);
+        pen.print("\n");
     
         pen.println("Original Values");
         figure(pen, "line", line);

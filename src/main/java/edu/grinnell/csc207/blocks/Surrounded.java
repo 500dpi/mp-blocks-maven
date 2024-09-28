@@ -94,5 +94,5 @@ public class Surrounded implements AsciiBlock {
    */
   public boolean eqv(AsciiBlock other) {
     return false;      
-  } 
+  } // eqv(AsciiBlock)
 } // class Surrounded

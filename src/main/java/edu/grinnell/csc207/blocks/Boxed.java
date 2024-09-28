@@ -107,10 +107,7 @@ public class Boxed implements AsciiBlock {
 
 
   /**
-   * Determine if another Boxed is structurally equivalent to this block.// current = this.block.row(i).charAt(index);
-        // flip[index] = flip[(length - 1) - index];
-        // flip[(length - 1) - index] = current;
-        // pen.println(flip.toString());
+   * Determine if another Boxed is structurally equivalent to this block.
    *
    * @param other
    *   The block to compare to this block.

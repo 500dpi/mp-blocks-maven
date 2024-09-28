@@ -1,7 +1,5 @@
 package edu.grinnell.csc207.blocks;
 
-import java.io.PrintWriter;
-
 /**
  * A horizontally flipped ASCII block.
  *
@@ -47,40 +45,21 @@ public class HFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    int w = this.width();
-    PrintWriter pen = new PrintWriter(System.out, true);
-    if (i >= 0 && i < w + 1) {
-      char[] flip = this.block.row(i).toCharArray();
-      int length = this.block.row(i).length();
-      char current;
-      for (int index = 0; index < length / 2; i++) {
-        String test = this.block.row(i);
-        test = "Test";
-        // this.block.row(i) = test.toString();
-        // current = this.block.row(i).charAt(index);
-        // flip[index] = flip[(length - 1) - index];
-        // flip[(length - 1) - index] = current;
-        // pen.println(flip.toString());
-      }
-      return this.block.row(i);
-    } else {
-      throw new Exception("Invalid row " + i);
-    }
-  } // row(int)
+    String str = new String(block.row(i));
+    String reversed = new String("");
+    int end = str.length() - 1;
 
-  public static void main(String[] args) {
-    PrintWriter pen = new PrintWriter(System.out, true);
-
-    Line test = new Line("?");
-    HFlip test2 = new HFlip(test);
-    
-    // AsciiBlock.print(pen, test);
-    try {
-    pen.println(test2.toString());
-    } catch (Exception e) {
-      System.err.println("Didn't work.");
+    for (int e = end; e >= 0; e--) {
+      reversed = reversed.concat(String.valueOf(str.charAt(e)));
     }
-    // AsciiBlock.print(pen, (line.row(0)));
+    // char[] str = this.block.row(i).toCharArray();
+    //   while (index > maxIndex/2) {
+    //     store = this.block.row(i).charAt(index);
+    //     str[index] = this.block.row(i).charAt(maxIndex - index);
+    //     str[maxIndex - index] = store;
+    //     index--;
+    //   }
+    return reversed;
   }
 
   /**
@@ -89,7 +68,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return this.block.height();
+    return block.height();
   } // height()
 
   /**
@@ -98,7 +77,7 @@ public class HFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return this.block.width();
+    return block.width();
   } // width()
 
   /**
@@ -111,6 +90,10 @@ public class HFlip implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
-  } // eqv(AsciiBlock)
+    return ((other instanceof HFlip) && (this.eqv((HFlip) other)));
+  }
+
+  public boolean eqv(HFlip other) {
+    return (this.block.eqv(other.block));
+  }
 } // class HFlip
