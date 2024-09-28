@@ -72,7 +72,47 @@ public class VComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return "";  // STUB
+    String line = "";// line to store string to return
+    int gap = 0;
+    int gapLeft = 0;
+    int gapRight = 0;
+    int iChecked = 0;
+    if ((i<0) || (i>= this.height())){
+      throw new Exception("Invalid row " + i);}
+
+    for (int n = 0; n< this.blocks.length; n++){ //loop itterating through all the blocks in your array to find which you are in
+      for (int block_i = 0;  block_i <this.blocks[n].height(); block_i +=1){
+        if (iChecked == i){
+          line += this.blocks[n].row(block_i);
+          gap  = this.width() - this.blocks[n].width(); // gap between the current block and the total block height
+          gapLeft = gap/2;
+          gapRight = this.width() - this.blocks[n].width() - gapLeft;
+          break;
+        }// if you find the i you want, break out of th eloop and update line
+        iChecked +=1;
+      }// loop itterating through all of the element in  the blocks checking if i has been reached and if so updating that line with that i
+      if (!line.equals("")){
+        break;
+      }// if the line has been found stop checking
+    }
+
+    if (this.align == HAlignment.LEFT){ // what to do if top alligned
+      return line + " ".repeat(gap);  //return the line built
+    }// right alignment
+
+    if (this.align == HAlignment.RIGHT){ // what to do if top alligned
+      return " ".repeat(gap) + line;  //return the line built
+    }// left allignment
+
+    if (this.align == HAlignment.CENTER){ // what to do if top alligned
+      return " ".repeat(gapLeft) + line + " ".repeat(gapRight);  //return the line built
+    }// checks for center allignment
+
+    else{
+      throw new Exception("Invalid alignment " + this.align);
+    } // expeeption in case of unnexpected allignment
+
+    
   } // row(int)
 
   /**
@@ -96,7 +136,7 @@ public class VComp implements AsciiBlock {
   public int width() {
     int width = 0;
     for (int i = 0; i< this.blocks.length; i++){
-      if (this.blocks[i].width() > width){
+      if (this.blocks[i].width() >= width){
         width  = this.blocks[i].width();
       }//
     }
@@ -129,13 +169,12 @@ public class VComp implements AsciiBlock {
   public boolean eqv(VComp other) {
     if (!(this.align == other.align)) {
       return false;
-    } else {
+    } 
     for (int i = 0; i < this.blocks.length; i++) {
       if (!(this.blocks[i].eqv(other.blocks[i]))) {
         return false;
       } // if
     } // for
     return true;
-    } // eqv(VComp)
-  } 
+  }
 } // class Grid

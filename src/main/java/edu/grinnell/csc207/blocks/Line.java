@@ -91,7 +91,7 @@ public class Line implements AsciiBlock {
    *         false otherwise.
    */
   public boolean eqv(Line other) {
-    return this.line.equals(other.line); // STUB
+    return this.line.equals(other.line); 
   } // eqv(Line)
 
   // +---------------+-----------------------------------------------

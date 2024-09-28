@@ -176,4 +176,4 @@ public class HComp implements AsciiBlock {
     return true;
     } 
   }
-} // class Grid
+} // classHcimo
