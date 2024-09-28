@@ -6,7 +6,7 @@ import java.util.Arrays;
  * The horizontal composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Jana V
  */
 public class HComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
