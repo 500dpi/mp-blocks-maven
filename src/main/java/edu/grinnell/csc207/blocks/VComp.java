@@ -127,6 +127,15 @@ public class VComp implements AsciiBlock {
    *         false otherwise.
    */
   public boolean eqv(VComp other) {
-    return (this.blocks == other.blocks) && (this.align == other.align);
-  } // eqv(Grid)
+    if (!(this.align == other.align)) {
+      return false;
+    } else {
+    for (int i = 0; i < this.blocks.length; i++) {
+      if (!(this.blocks[i].eqv(other.blocks[i]))) {
+        return false;
+      } // if
+    } // for
+    return true;
+    } // eqv(VComp)
+  } 
 } // class Grid
