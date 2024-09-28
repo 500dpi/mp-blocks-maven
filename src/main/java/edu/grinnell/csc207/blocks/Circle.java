@@ -21,7 +21,7 @@ public class Circle implements AsciiBlock {
   // +--------------+
 
   /**
-   * Build a new block with the specified contents.
+   * Build a new encircled block with the specified contents.
    *
    * @param blockContents
    *   The contents of the block.
