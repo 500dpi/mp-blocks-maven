@@ -74,7 +74,7 @@ public class Parenthesis implements AsciiBlock {
     if (i == 0) {
       return top + textEven;
     } else if (i == this.height() - 1) {
-      return textEven + "\n" +  bottom;
+      return textEven + "\n" +bottom;
     } else {
       return textEven;
     }
@@ -89,11 +89,11 @@ public class Parenthesis implements AsciiBlock {
     AsciiBlock c = new Lines ("L");
     AsciiBlock d = new VComp(HAlignment.CENTER, a, b);
     AsciiBlock e = new Lines("**");
-    // AsciiBlock.print(pen, new Parenthesis(a, '*'));
-    // AsciiBlock.print(pen, new Parenthesis(b, '*'));
-    // AsciiBlock.print(pen, new Parenthesis(c, '*'));
-    // AsciiBlock.print(pen, new Parenthesis(d, '*'));
-    // AsciiBlock.print(pen, new Parenthesis(e, '*'));
+    AsciiBlock.print(pen, new Parenthesis(a, '*'));
+    AsciiBlock.print(pen, new Parenthesis(b, '*'));
+    AsciiBlock.print(pen, new Parenthesis(c, '*'));
+    AsciiBlock.print(pen, new Parenthesis(d, '*'));
+    AsciiBlock.print(pen, new Parenthesis(e, '*'));
     AsciiBlock.print(pen, new Parenthesis(new VFlip(new Lines(new String[] { "Alphabet", "Testing", "helloworld" })), '*'));
     // AsciiBlock.print(pen, new Circle(d, '-'));
   }
