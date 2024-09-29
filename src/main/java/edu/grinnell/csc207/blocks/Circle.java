@@ -1,9 +1,12 @@
 package edu.grinnell.csc207.blocks;
 
+import java.io.PrintWriter;
+
 /**
  * A text block surrounded by a circle.
  *
  * @author Sara Jaljaa
+ * @author Jana Vadillo
  */
 public class Circle implements AsciiBlock {
 
@@ -16,6 +19,10 @@ public class Circle implements AsciiBlock {
    */
   AsciiBlock contents;
 
+  int radius;
+
+  char outline;
+
   // +--------------+------------------------------------------------------
   // | Constructors |
   // +--------------+
@@ -26,8 +33,9 @@ public class Circle implements AsciiBlock {
    * @param blockContents
    *   The contents of the block.
    */
-  public Circle(AsciiBlock blockContents) {
+  public Circle(AsciiBlock blockContents, char outline) {
     this.contents = blockContents;
+    this.outline = outline;
   } // Circle(AsciiBlock)
 
   // +---------+-----------------------------------------------------------
@@ -45,8 +53,45 @@ public class Circle implements AsciiBlock {
    *   if the row is invalid
    */
   public String row(int i) throws Exception {
-    return " "; // STUB: Need to implement
-  } // row(int)
+    if ((i < 0) || (i >= this.height())) {
+      throw new Exception("Invalid row " + i);
+    } 
+
+    String outline = String.valueOf(this.outline),
+           inner = "  " + outline + " ".repeat(this.width()) + outline + "  " + "\n",
+           middle = " " + outline + " " + " ".repeat(this.width()) + " " + outline + " " + "\n",
+           outer = "    " + outline.repeat(this.width() - 2) + "    " + "\n",
+           centerText = outline + "  " + this.contents.row(i) + "  " + outline + "\n";
+
+    String top = outer + inner + middle;
+    String bottom = middle + inner + outer;
+
+    if (this.height() == 1) {
+      return top + centerText + bottom;
+    } else if (this.height() == 0) {
+      return top + bottom;
+    }
+    
+    if (i == 0) {
+      return top + centerText;
+    } else if (i == this.height() - 1) {
+      return centerText + bottom;
+    } else {
+      return centerText;
+    }
+  }
+
+  public static void main(String[] args) {
+    PrintWriter pen = new PrintWriter(System.out, true);
+
+    AsciiBlock a = new Lines("Hello\nhello\nHello\n");
+    AsciiBlock b = new Lines ("Test testing testeroo");
+    AsciiBlock c = new Lines ("Last lest list");
+    AsciiBlock d = new VComp(HAlignment.CENTER, a, b);
+    AsciiBlock.print(pen, new Circle(a, '*'));
+    AsciiBlock.print(pen, new Circle(b, '*'));
+    // AsciiBlock.print(pen, new Circle(d, '-'));
+  }
 
   /**
    * Determine how many rows are in the block.
@@ -54,7 +99,10 @@ public class Circle implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 4 + this.contents.height();
+    if (this.contents.height() == 0) {
+      return 6;
+    }
+    return this.contents.height();
   } // height()
 
   /**
@@ -63,6 +111,9 @@ public class Circle implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
+    if (this.contents.width() == 0) {
+      return 6;
+    }
     return this.contents.width();
   } // width()
 
@@ -92,3 +143,4 @@ public class Circle implements AsciiBlock {
     return this.contents.eqv(other.contents);
   } // eqv(Circle)
 } // class Circle
+

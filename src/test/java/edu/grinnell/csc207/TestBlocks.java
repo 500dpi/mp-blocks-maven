@@ -8,18 +8,14 @@ import edu.grinnell.csc207.blocks.HAlignment;
 import edu.grinnell.csc207.blocks.HComp;
 import edu.grinnell.csc207.blocks.HFlip;
 import edu.grinnell.csc207.blocks.Line;
-import edu.grinnell.csc207.blocks.Padded;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.Surrounded;
-import edu.grinnell.csc207.blocks.Trimmed;
 import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.VComp;
 import edu.grinnell.csc207.blocks.VFlip;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

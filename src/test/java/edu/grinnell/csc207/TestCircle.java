@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests of the new block.
  */
-public class TestNewBlock {
+public class TestCircle {
   // +-------+-------------------------------------------------------
   // | Tests |
   // +-------+

@@ -45,6 +45,10 @@ public class HFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
+    if ((i < 0) || (i >= this.height())) {
+      throw new Exception("Invalid row " + i);
+    } 
+    
     String str = this.block.row(i);
     String reversed = "";
 
