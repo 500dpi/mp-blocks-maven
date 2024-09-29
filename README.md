@@ -18,7 +18,7 @@ such as mirroring and layering sequentially (vertically
 # Acknowledgements
 
 * Max Strandberg for the spider ASCII art base:
-    https://www.asciiart.eu/animals/insects/bees
+    https://www.asciiart.eu/animals/spiders
 * For running human ASCII art:
     https://www.asciiart.eu/animals/insects/bees
 * String documentation:
