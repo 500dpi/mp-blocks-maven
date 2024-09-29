@@ -8,7 +8,7 @@ import java.io.PrintWriter;
  * @author Sara Jaljaa
  * @author Jana Vadillo
  */
-public class Circle implements AsciiBlock {
+public class Parenthesis implements AsciiBlock {
 
   // +--------+------------------------------------------------------------
   // | Fields |
@@ -33,7 +33,7 @@ public class Circle implements AsciiBlock {
    * @param blockContents
    *   The contents of the block.
    */
-  public Circle(AsciiBlock blockContents, char outline) {
+  public Parenthesis(AsciiBlock blockContents, char outline) {
     this.contents = blockContents;
     this.outline = outline;
   } // Circle(AsciiBlock)
@@ -53,43 +53,47 @@ public class Circle implements AsciiBlock {
    *   if the row is invalid
    */
   public String row(int i) throws Exception {
-    if ((i < 0) || (i >= this.height())) {
+    if ((i < 0) || (i == this.height())) {
       throw new Exception("Invalid row " + i);
-    } 
+    }
 
     String outline = String.valueOf(this.outline),
-           inner = "  " + outline + " ".repeat(this.width()) + outline + "  " + "\n",
-           middle = " " + outline + " " + " ".repeat(this.width()) + " " + outline + " " + "\n",
-           outer = "    " + outline.repeat(this.width() - 2) + "    " + "\n",
-           centerText = outline + "  " + this.contents.row(i) + "  " + outline + "\n";
+        inner = "  " + outline + " ".repeat(this.width()) + outline + "  " + "\n",
+        middle = " " + outline + " " + " ".repeat(this.width()) + " " + outline + " " + "\n",
+        textEven = outline + "  " + this.contents.row(i) + "  " + outline + "\n";
 
-    String top = outer + inner + middle;
-    String bottom = middle + inner + outer;
+    String top =  inner + middle;
+    String bottom = middle + inner;
 
-    if (this.height() == 1) {
-      return top + centerText + bottom;
-    } else if (this.height() == 0) {
+    if (this.contents.row(i) == "") {
       return top + bottom;
+    } else if (this.height() == 1) {
+      return top + textEven + bottom;
     }
     
     if (i == 0) {
-      return top + centerText;
+      return top + textEven;
     } else if (i == this.height() - 1) {
-      return centerText + bottom;
+      return textEven + bottom;
     } else {
-      return centerText;
+      return textEven;
     }
   }
 
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
 
-    AsciiBlock a = new Lines("Hello\nhello\nHello\n");
-    AsciiBlock b = new Lines ("Test testing testeroo");
-    AsciiBlock c = new Lines ("Last lest list");
+    
+    AsciiBlock a = new Lines("a B a B a B a B a");
+    AsciiBlock b = new Lines ("c D c D c D c");
+    AsciiBlock c = new Lines ("");
     AsciiBlock d = new VComp(HAlignment.CENTER, a, b);
-    AsciiBlock.print(pen, new Circle(a, '*'));
-    AsciiBlock.print(pen, new Circle(b, '*'));
+    AsciiBlock e = new Lines("**");
+    // AsciiBlock.print(pen, new Parenthesis(a, '*'));
+    // AsciiBlock.print(pen, new Parenthesis(b, '*'));
+    AsciiBlock.print(pen, new Parenthesis(c, '*'));
+    // AsciiBlock.print(pen, new Parenthesis(d, '*'));
+    // AsciiBlock.print(pen, new Parenthesis(e, '*'));
     // AsciiBlock.print(pen, new Circle(d, '-'));
   }
 
@@ -127,7 +131,7 @@ public class Circle implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return ((other instanceof Parenthesis) && (this.contents.eqv((Parenthesis) other)));
   } // eqv(AsciiBlock)
 
   /**
@@ -139,8 +143,8 @@ public class Circle implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and
    *     false otherwise.
    */
-  public boolean eqv(Circle other) {
-    return this.contents.eqv(other.contents);
+  public boolean eqv(Parenthesis other) {
+    return ((this.outline == other.outline) && (this.contents.eqv(other.contents)));
   } // eqv(Circle)
 } // class Circle
 
