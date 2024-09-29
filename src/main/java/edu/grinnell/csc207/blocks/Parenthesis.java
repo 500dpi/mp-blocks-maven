@@ -60,21 +60,21 @@ public class Parenthesis implements AsciiBlock {
     String outline = String.valueOf(this.outline),
         inner = "  " + outline + " ".repeat(this.width()) + outline + "  " + "\n",
         middle = " " + outline + " " + " ".repeat(this.width()) + " " + outline + " " + "\n",
-        textEven = outline + "  " + this.contents.row(i) + "  " + outline + "\n";
+        textEven = outline + "  " + this.contents.row(i) + "  " + outline;
 
     String top =  inner + middle;
     String bottom = middle + inner;
 
-    if (this.contents.row(i) == "") {
+    if (this.height() == 1) {
+      return top + textEven + "\n" + bottom;
+    } else if (this.height() == 0) {
       return top + bottom;
-    } else if (this.height() == 1) {
-      return top + textEven + bottom;
     }
     
     if (i == 0) {
       return top + textEven;
     } else if (i == this.height() - 1) {
-      return textEven + bottom;
+      return textEven + "\n" +  bottom;
     } else {
       return textEven;
     }
@@ -86,14 +86,15 @@ public class Parenthesis implements AsciiBlock {
     
     AsciiBlock a = new Lines("a B a B a B a B a");
     AsciiBlock b = new Lines ("c D c D c D c");
-    AsciiBlock c = new Lines ("");
+    AsciiBlock c = new Lines ("L");
     AsciiBlock d = new VComp(HAlignment.CENTER, a, b);
     AsciiBlock e = new Lines("**");
     // AsciiBlock.print(pen, new Parenthesis(a, '*'));
     // AsciiBlock.print(pen, new Parenthesis(b, '*'));
-    AsciiBlock.print(pen, new Parenthesis(c, '*'));
+    // AsciiBlock.print(pen, new Parenthesis(c, '*'));
     // AsciiBlock.print(pen, new Parenthesis(d, '*'));
     // AsciiBlock.print(pen, new Parenthesis(e, '*'));
+    AsciiBlock.print(pen, new Parenthesis(new VFlip(new Lines(new String[] { "Alphabet", "Testing", "helloworld" })), '*'));
     // AsciiBlock.print(pen, new Circle(d, '-'));
   }
 
