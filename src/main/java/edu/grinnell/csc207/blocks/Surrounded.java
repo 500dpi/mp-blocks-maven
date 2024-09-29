@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A text block surrounded by a single letter.
  *
  * @author Samuel A. Rebelsky
- * @author Jana Vadillo and Sara Jaljaa
+ * @author Jana Vadillo
  */
 public class Surrounded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -53,14 +53,12 @@ public class Surrounded implements AsciiBlock {
    * @exception Exception
    *   If the row is invalid.
    */
-  public String row(int i) throws Exception{
-    if ((i == 0) || (i == this.height() -1)){
+  public String row(int i) throws Exception {
+    if ((i == 0) || (i == this.height() - 1)) {
       return(this.surroundChar.repeat(this.contents.width() + 2));
-    }
-    else if ((i > 0) && (i <= this.height())){
-      return (this.surroundChar + this.contents.row(i-1) + this.surroundChar);
-    }
-    else {
+    } else if ((i > 0) && (i <= this.height())) {
+      return (this.surroundChar + this.contents.row(i - 1) + this.surroundChar);
+    } else {
       throw new Exception("Invalid row " + i);
     } // if/else
   } // row(int)
@@ -71,7 +69,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return this.contents.height() +2;   // STUB
+    return this.contents.height() + 2;
   } // height()
 
   /**
@@ -80,7 +78,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return this.contents.width() +2;   // STUB
+    return this.contents.width() + 2;
   } // width()
 
   /**
@@ -107,6 +105,5 @@ public class Surrounded implements AsciiBlock {
    */
   public boolean eqv(Surrounded other) {
     return ((this.contents.eqv(other.contents) && (this.surroundChar .equals(other.surroundChar))));
-
-  }
+  } // eqv(Surrounded)
 } // class Grid

@@ -47,7 +47,7 @@ public class VFlip implements AsciiBlock {
   public String row(int i) throws Exception {
     if ((i < 0) || (i >= this.height())) {
       throw new Exception("Invalid row " + i);
-    } 
+    } // if exception
     return this.block.row(this.block.height() - i - 1);
   } // row(int)
 
@@ -80,9 +80,18 @@ public class VFlip implements AsciiBlock {
    */
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof VFlip) && (this.eqv((VFlip) other)));
-  }
+  } // eqv(AsciiBlock)
 
+  /**
+   * Determine if another VFlip is structurally equivalent to this VFlip.
+   *
+   * @param other
+   *   The block to compare to this block.
+   *
+   * @return true if the two blocks are structurally equivalent and
+   *    false otherwise.
+   */
   public boolean eqv(VFlip other) {
     return (this.block.eqv(other.block));
-  } // eqv(AsciiBlock)
+  } // eqv(VFlip)
 } // class VFlip

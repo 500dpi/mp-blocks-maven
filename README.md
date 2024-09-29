@@ -11,7 +11,9 @@ Explorations with the creation, composition, and mutation of blocks of ASCII tex
 **Notes for the reader**
 
 A program that arranges printable ASCII characters to 
-form artwork.
+form an 80x24 artwork. It uses compositional methods,
+such as mirroring and layering sequentially (vertically
+& horizontally) to arrange text characters.
 
 ---
 

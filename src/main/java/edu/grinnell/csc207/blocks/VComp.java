@@ -6,8 +6,7 @@ import java.util.Arrays;
  * The vertical composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Jana V
- * @author Your Name Here
+ * @author Jana Vadillo
  */
 public class VComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -55,7 +54,7 @@ public class VComp implements AsciiBlock {
   public VComp(HAlignment alignment, AsciiBlock[] blocksToCompose) {
     this.align = alignment;
     this.blocks = Arrays.copyOf(blocksToCompose, blocksToCompose.length);
-  } // VComp(HAlignment, AsciiBLOCK[])
+  } // VComp(HAlignment, AsciiBlock[])
 
   // +---------+-----------------------------------------------------------
   // | Methods |
@@ -72,47 +71,53 @@ public class VComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    String line = "";// line to store string to return
+    // line to store string to return
+    String line = "";
     int gap = 0;
     int gapLeft = 0;
     int gapRight = 0;
     int iChecked = 0;
-    if ((i<0) || (i>= this.height())){
-      throw new Exception("Invalid row " + i);}
 
-    for (int n = 0; n< this.blocks.length; n++){ //loop itterating through all the blocks in your array to find which you are in
-      for (int block_i = 0;  block_i <this.blocks[n].height(); block_i +=1){
-        if (iChecked == i){
-          line += this.blocks[n].row(block_i);
-          gap  = this.width() - this.blocks[n].width(); // gap between the current block and the total block height
-          gapLeft = gap/2;
+    if ((i < 0) || (i >= this.height())) {
+      throw new Exception("Invalid row " + i);
+    } // if
+
+    // loop itterating through all the blocks in your array
+    for (int n = 0; n < this.blocks.length; n++) {
+      for (int blockI = 0;  blockI < this.blocks[n].height(); blockI += 1) {
+        if (iChecked == i) {
+          line += this.blocks[n].row(blockI);
+          // gap between the current block and the total block height
+          gap  = this.width() - this.blocks[n].width();
+          gapLeft = gap / 2;
           gapRight = this.width() - this.blocks[n].width() - gapLeft;
           break;
-        }// if you find the i you want, break out of th eloop and update line
-        iChecked +=1;
-      }// loop itterating through all of the element in  the blocks checking if i has been reached and if so updating that line with that i
-      if (!line.equals("")){
+        } // if
+        iChecked += 1;
+      } // for
+      // loop itterating through all of the element inthe blocks checking
+      /// if i has been reached and if so updating that line with that i
+      if (!line.equals("")) {
         break;
-      }// if the line has been found stop checking
-    }
+      } // if
+    } // for
 
-    if (this.align == HAlignment.LEFT){ // what to do if top alligned
-      return line + " ".repeat(gap);  //return the line built
-    }// right alignment
+    // if top alligned
+    if (this.align == HAlignment.LEFT) {
+      return line + " ".repeat(gap);
+    } // if
 
-    if (this.align == HAlignment.RIGHT){ // what to do if top alligned
-      return " ".repeat(gap) + line;  //return the line built
-    }// left allignment
+    // what to do if right alligned
+    if (this.align == HAlignment.RIGHT) {
+      return " ".repeat(gap) + line;
+    } // if
 
-    if (this.align == HAlignment.CENTER){ // what to do if top alligned
-      return " ".repeat(gapLeft) + line + " ".repeat(gapRight);  //return the line built
-    }// checks for center allignment
-
-    else{
+    // what to do if center alligned
+    if (this.align == HAlignment.CENTER) {
+      return " ".repeat(gapLeft) + line + " ".repeat(gapRight);
+    } else {
       throw new Exception("Invalid alignment " + this.align);
-    } // expeeption in case of unnexpected allignment
-
-    
+    } // if
   } // row(int)
 
   /**
@@ -122,10 +127,10 @@ public class VComp implements AsciiBlock {
    */
   public int height() {
     int height = 0;
-    for (int i = 0; i< this.blocks.length; i++){
+    for (int i = 0; i < this.blocks.length; i++) {
       height += this.blocks[i].height();
-    }
-    return height;   // STUB
+    } // for
+    return height;
   } // height()
 
   /**
@@ -135,13 +140,12 @@ public class VComp implements AsciiBlock {
    */
   public int width() {
     int width = 0;
-    for (int i = 0; i< this.blocks.length; i++){
-      if (this.blocks[i].width() >= width){
+    for (int i = 0; i < this.blocks.length; i++) {
+      if (this.blocks[i].width() >= width) {
         width  = this.blocks[i].width();
-      }//
-    }
-    return width; 
-
+      } // if
+    } // for
+    return width;
   } // width()
 
   /**
@@ -169,12 +173,12 @@ public class VComp implements AsciiBlock {
   public boolean eqv(VComp other) {
     if (!(this.align == other.align)) {
       return false;
-    } 
+    } // if
     for (int i = 0; i < this.blocks.length; i++) {
       if (!(this.blocks[i].eqv(other.blocks[i]))) {
         return false;
       } // if
     } // for
     return true;
-  }
+  } // eqv(VComp)
 } // class Grid

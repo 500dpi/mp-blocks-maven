@@ -47,16 +47,16 @@ public class HFlip implements AsciiBlock {
   public String row(int i) throws Exception {
     if ((i < 0) || (i >= this.height())) {
       throw new Exception("Invalid row " + i);
-    } 
-    
+    } // if/exception
+
     String str = this.block.row(i);
     String reversed = "";
 
-    for (int e = str.length() - 1; e >= 0 ; e--) {
+    for (int e = str.length() - 1; e >= 0; e--) {
       reversed = reversed + String.valueOf(str.charAt(e));
-    }
+    } // for
     return reversed;
-  }
+  } // row(int)
 
   /**
    * Determine how many rows are in the block.
@@ -87,9 +87,19 @@ public class HFlip implements AsciiBlock {
    */
   public boolean eqv(AsciiBlock other) {
     return ((other instanceof HFlip) && ((this.eqv((HFlip) other))));
-  }
+  } // eqv(AsciiBlock)
 
+  /**
+   * Determine if another HFlip block is structurally equivalent
+   * to this HFlip block.
+   *
+   * @param other
+   *   The block to compare to this block.
+   *
+   * @return true if the two blocks are structurally equivalent and
+   *    false otherwise.
+   */
   public boolean eqv(HFlip other) {
     return (this.block.eqv(other.block));
-  }
+  } // eqv(HFlip)
 } // class HFlip

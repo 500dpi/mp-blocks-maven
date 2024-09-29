@@ -16,8 +16,8 @@ import java.io.PrintWriter;
  * Experiments with ASCII blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Sara Jaljaa
+ * @author Jana Vadillo
  */
 public class Blocks {
   /**
@@ -144,7 +144,6 @@ public class Blocks {
         new VComp(HAlignment.CENTER, new AsciiBlock[] {v1, v7, v11, v19}));
     figure(pen, "Left composition",
         new VComp(HAlignment.RIGHT, new AsciiBlock[] {v1, v7, v11, v19}));
-
     pen.close();
   } // main(String[])
 } // class Blocks

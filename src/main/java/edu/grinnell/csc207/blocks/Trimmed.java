@@ -78,7 +78,7 @@ public class Trimmed implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    throw new Exception("Not yet implemented");
   } // row(int)
 
   /**
@@ -87,7 +87,7 @@ public class Trimmed implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return 0;
   } // height()
 
   /**
@@ -96,7 +96,7 @@ public class Trimmed implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return 0;
   } // width()
 
   /**
@@ -109,6 +109,6 @@ public class Trimmed implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return false;
   } // eqv(AsciiBlock)
 } // class Trimmed

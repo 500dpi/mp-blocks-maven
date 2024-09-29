@@ -6,7 +6,7 @@ import java.util.Arrays;
  * The horizontal composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Jana V
+ * @author Jana Vadillo
  */
 public class HComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -71,47 +71,48 @@ public class HComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    String line = "";// line to store string to return
-    for (int n = 0; n< this.blocks.length; n++){ //loop itterating through all the blocks in your array
-      int gap  = this.height() - this.blocks[n].height(); // gap between the current block and the total block height
+    // line to store string to return
+    String line = "";
+    // loop iterating through all the blocks
+    for (int n = 0; n < this.blocks.length; n++) {
+      // gap between the current block and the total block height
+      int gap  = this.height() - this.blocks[n].height();
 
-      if (this.align == VAlignment.TOP){ // what to do if top alligned
-        if ((i>=0) && (i<this.blocks[n].height())){
+      if (this.align == VAlignment.TOP) { // what to do if top alligned
+        if ((i >= 0) && (i < this.blocks[n].height())) {
           line += this.blocks[n].row(i);
-        } // if you are within the bounds of where your current block fits return the same i line
-        else if ((i>= 0) && (i < this.height())){
+        } else if ((i >= 0) && (i < this.height())) {
           line += (" ".repeat(this.blocks[n].width()));
-        } // if you are still within the larger block return " "
-        else{
+        } else {
           throw new Exception("Invalid row " + i);
-        }// ptherwise the row must be invalid
-      }// top alligned 
-      if (this.align == VAlignment.BOTTOM){
-        if ((i>=0) && (i< gap)){
-          line += (" ".repeat(this.blocks[n].width())); // if you are bellow where the block should start, return a " " spacer"
-        }
-        else if ((i>= 0) && (i < this.height())){
+        } // if
+      } // for
+
+      // bottom aligned
+      if (this.align == VAlignment.BOTTOM) {
+        if ((i >= 0) && (i < gap)) {
+          line += (" ".repeat(this.blocks[n].width()));
+        } else if ((i >= 0) && (i < this.height())) {
           line += this.blocks[n].row(i - gap);
-        }// otherwise throw the respective i line shifted by the gap
-        else{
+        } else {
           throw new Exception("Invalid row " + i);
-        }// otherwise it must be out of bounds
-      }// bottom alligned
-      if (this.align == VAlignment.CENTER){
-        int End = gap/2 + this.blocks[n].height();// keeps track of where we should end the transfer of the middle
-        int Start = gap/2; // keeps track of where we should start the middle transfer
-        if ((i>= Start) && (i < End)){
-          line += this.blocks[n].row(i-Start);
-        } // of you are in the correct range give up the shifted values
-        else if ((i>= 0) && (i < this.height())){
+        } // if
+      } // if
+
+      // center aligned
+      if (this.align == VAlignment.CENTER) {
+        int end = gap / 2 + this.blocks[n].height();
+        int start = gap / 2;
+        if ((i >= start) && (i < end)) {
+          line += this.blocks[n].row(i - start);
+        } else if ((i >= 0) && (i < this.height())) {
           line += (" ".repeat(this.blocks[n].width()));
-        } // otherwise return a filller
-        else{
+        } else {
           throw new Exception("Invalid row " + i);
-        }// otherwise raise an error
-      }// center alligned
-    }//end of loop for itterating through blocks
-    return line;  //return the line built
+        } // if
+      } // if
+    } // for
+    return line;
   } // row(int)
 
   /**
@@ -121,12 +122,12 @@ public class HComp implements AsciiBlock {
    */
   public int height() {
     int height = 0;
-    for (int i = 0; i< this.blocks.length; i++){
-      if (this.blocks[i].height() > height){
-        height  = this.blocks[i].height();
-      }//
-    }
-    return height; 
+    for (int i = 0; i < this.blocks.length; i++) {
+      if (this.blocks[i].height() > height) {
+        height = this.blocks[i].height();
+      } // if
+    } // for
+    return height;
   } // height()
 
   /**
@@ -136,10 +137,10 @@ public class HComp implements AsciiBlock {
    */
   public int width() {
     int width = 0;
-    for (int i = 0; i< this.blocks.length; i++){
+    for (int i = 0; i < this.blocks.length; i++) {
       width += this.blocks[i].width();
-    }
-    return width;   // STUB
+    } // for
+    return width;
   } // width()
 
   /**
@@ -168,12 +169,12 @@ public class HComp implements AsciiBlock {
     if (!(this.align == other.align)) {
       return false;
     } else {
-    for (int i = 0; i < this.blocks.length; i++) {
-      if (!(this.blocks[i].eqv(other.blocks[i]))) {
-        return false;
-      } // if
-    } // for
-    return true;
-    } 
-  }
+      for (int i = 0; i < this.blocks.length; i++) {
+        if (!(this.blocks[i].eqv(other.blocks[i]))) {
+          return false;
+        } // if
+      } // for
+      return true;
+    } // if
+  } // eqv(HComp)
 } // classHcimo
