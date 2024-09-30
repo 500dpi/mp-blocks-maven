@@ -16,6 +16,48 @@ import java.io.PrintWriter;
  * @author Jana Vadillo
  */
 public class Art80x24 {
+
+  /**
+   * Creates ASCII art of a spider web descending.
+   *
+   * @param repetitions
+   *   The height of the web.
+   *
+   * @return
+   *   An AsciiBlock representing a spider web.
+   */
+  public static AsciiBlock web(int repetitions) {
+    AsciiBlock hangingL = new Lines(new String[] {"\\\\\\", " \\\\", "  \\"});
+    AsciiBlock hangingR = new Lines(new String[] {"///", "//", "/"});
+    String s = "|\n".repeat(repetitions);
+    return new HComp(VAlignment.TOP, new AsciiBlock[] {hangingL, new Lines(s), hangingR});
+  } // web(int)
+
+    /**
+   * Creates ASCII art of a spider.
+   *
+   * @param head
+   *   The head of the spider.
+   *
+   * @return
+   *   An AsciiBlock representing a spider.
+   */
+  public static AsciiBlock spider(char head) {
+    AsciiBlock leftLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
+      new Lines("  /\n\\_\\(\n _//\n  / ")});
+    AsciiBlock rightLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
+      new Lines(" \\  \n)/_/\n\\\\_ \n \\  ")});
+    AsciiBlock center = new VComp(HAlignment.CENTER, new AsciiBlock[] {
+      new Line("|"),
+      new Line("_"),
+      new Line(String.valueOf(head)),
+      new Line(" ")});
+    return new HComp(VAlignment.TOP, new AsciiBlock[] {
+      leftLegs,
+      center,
+      rightLegs});
+  } // spider(char)
+
   /**
    * Creates artwork depicting a human trapped in a spider web.
    *
@@ -28,71 +70,29 @@ public class Art80x24 {
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
 
-    AsciiBlock baseWeb = new Line("/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\");
-    AsciiBlock floor1 = new Line("_______");
-    AsciiBlock floor2 = new Line("_____________________");
-
-    AsciiBlock person = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        new Line("\\_o_/ "),
-        new Line("   )  "),
-        new Line("  /\\__"),
-        new Line("_ \\ __")});
+    AsciiBlock baseWeb = new Line("/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\");
+    AsciiBlock floorLeft = new Line("_______");
+    AsciiBlock floorRight = new Line("_____________________");
+    AsciiBlock person = new Lines("\\_o_/ \n   )  \n  /\\__\n_ \\ __\n");
 
     AsciiBlock floor = new HComp(VAlignment.BOTTOM, new AsciiBlock[] {
-        floor1, person, floor2 });
+        floorLeft, person, floorRight});
 
-    AsciiBlock web9 = new Lines(new String[] {
-        "|", "|", "|", "|", "|", "|", "|", "|", "|"});
-    AsciiBlock web12 = new Lines(new String[] {
-        "|", "|", "|", "|", "|", "|", "|", "|", "|", "|", "|", "|"});
-    AsciiBlock web4 = new Lines(new String[] {
-        "|", "|", "|", "|"});
+    AsciiBlock spider1 = new VComp(HAlignment.CENTER, web(9), spider('o'));
+    AsciiBlock spider2 = new VComp(HAlignment.CENTER, web(14), spider('\"'));
+    AsciiBlock spider3 = new VComp(HAlignment.CENTER, web(6), spider('^'));
 
-    AsciiBlock leftLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        new Line("  /"),
-        new Line("\\_\\("),
-        new Line(" _//"),
-        new Line("  / ")});
+    AsciiBlock finalSpiders = new HComp(VAlignment.TOP, new AsciiBlock[] {
+      new Lines(" // \n// \n/  "),
+        spider3, spider2, spider1, spider3,
+        spider2, spider1, spider2, spider3,
+      new Lines(" \\\\\n  \\\\\n   \\")});
 
-    AsciiBlock rightLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        new Line(" \\  "),
-        new Line(")/_/"),
-        new Line("\\\\_ "),
-        new Line(" \\  ")});
+    AsciiBlock base = new HComp(VAlignment.TOP, new AsciiBlock[] {
+        baseWeb, baseWeb, baseWeb, baseWeb});
 
-    AsciiBlock bodyType1 = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        web12,
-        new Line("_"),
-        new Line("o"),
-        new Line(" ")});
-
-    AsciiBlock bodyType2 = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        web9,
-        new Line("_"),
-        new Line("\""),
-        new Line(" ")});
-
-    AsciiBlock bodyType3 = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-        web4,
-        new Line("_"),
-        new Line("^"),
-        new Line(" ")});
-
-    AsciiBlock spider1 = new HComp(VAlignment.BOTTOM, new AsciiBlock[] {
-        leftLegs, bodyType1, rightLegs, new Line("   ")});
-
-    AsciiBlock spider2 = new HComp(VAlignment.BOTTOM, new AsciiBlock[] {
-        leftLegs, bodyType2, rightLegs, new Line("   ")});
-
-    AsciiBlock spider3 = new HComp(VAlignment.BOTTOM, new AsciiBlock[] {
-        leftLegs, bodyType3, rightLegs, new Line("   ")});
-
-    AsciiBlock spiders = new HComp(VAlignment.TOP, new AsciiBlock[] {
-        spider1, spider3, spider2, new Line(" ")});
-    AsciiBlock finalSpiders = new HComp(VAlignment.TOP, new AsciiBlock[] {spiders, spiders});
-    AsciiBlock web = new HComp(VAlignment.TOP, new AsciiBlock[] {baseWeb, baseWeb, baseWeb});
-    AsciiBlock.print(pen, new VComp(HAlignment.CENTER,
-        new AsciiBlock[] {web, finalSpiders, floor}));
+    AsciiBlock.print(pen, new VComp(HAlignment.CENTER, new AsciiBlock[] {
+        base, finalSpiders, floor}));
     pen.close();
   } // main(String[])
 } // class Art80x24

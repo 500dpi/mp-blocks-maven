@@ -12,16 +12,18 @@ Explorations with the creation, composition, and mutation of blocks of ASCII tex
 
 A program that arranges printable ASCII characters to 
 form an 80x24 artwork. It uses compositional methods,
-such as mirroring and layering sequentially (vertically
-& horizontally) to arrange text characters.
+such as mirroring and layering sequentially 
+(vertically/horizontally) to arrange text characters.
 
-# Acknowledgements
+**Acknowledgements**
 
 * Max Strandberg for the spider ASCII art base:
     https://www.asciiart.eu/animals/spiders
-* For running human ASCII art:
+
+* Person running ASCII art:
     https://www.asciiart.eu/animals/insects/bees
-* String documentation:
+
+* Java String documentation:
     https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html
 
 This code may be found at <https://github.com/500dpi/mp-blocks-maven>. 
