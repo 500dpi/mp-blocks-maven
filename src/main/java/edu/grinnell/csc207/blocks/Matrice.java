@@ -38,7 +38,7 @@ public class Matrice implements AsciiBlock {
   public Matrice(AsciiBlock blockContents, char outline) {
     this.contents = blockContents;
     this.paren = outline;
-  } // Parenthesis(AsciiBlock)
+  } // Matrice(AsciiBlock)
 
   // +---------+-----------------------------------------------------------
   // | Methods |
