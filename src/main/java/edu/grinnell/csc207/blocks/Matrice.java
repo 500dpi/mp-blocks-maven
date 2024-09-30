@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.blocks;
 
 /**
- * A text block surrounded by a circle.
+ * A text block matrice.
  *
  * @author Sara Jaljaa
  * @author Jana Vadillo
@@ -13,14 +13,14 @@ public class Matrice implements AsciiBlock {
   // +--------+
 
   /**
-   * The stuff in the circle.
+   * The stuff in the matrice.
    */
   AsciiBlock contents;
 
   /**
-   * The matrice outline symbol.
+   * The matrice outline.
    */
-  char outline;
+  char paren;
 
   // +--------------+------------------------------------------------------
   // | Constructors |
@@ -37,7 +37,7 @@ public class Matrice implements AsciiBlock {
    */
   public Matrice(AsciiBlock blockContents, char outline) {
     this.contents = blockContents;
-    this.outline = outline;
+    this.paren = outline;
   } // Parenthesis(AsciiBlock)
 
   // +---------+-----------------------------------------------------------
@@ -59,7 +59,7 @@ public class Matrice implements AsciiBlock {
       throw new Exception("Invalid row " + i);
     } // if
 
-    String outline = String.valueOf(this.outline);
+    String outline = String.valueOf(this.paren);
     String inner = "  " + outline + " ".repeat(this.width()) + outline + "  " + "\n";
     String middle = " " + outline + " " + " ".repeat(this.width()) + " " + outline + " " + "\n";
     String textEven = outline + "  " + this.contents.row(i) + "  " + outline;
@@ -129,7 +129,7 @@ public class Matrice implements AsciiBlock {
    *     false otherwise.
    */
   public boolean eqv(Matrice other) {
-    return ((this.outline == other.outline) && (this.contents.eqv(other.contents)));
+    return ((this.paren == other.paren) && (this.contents.eqv(other.contents)));
   } // eqv(Circle)
 } // class Circle
 
