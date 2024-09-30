@@ -27,7 +27,7 @@ public class Matrice implements AsciiBlock {
   // +--------------+
 
   /**
-   * Build a new encircled block with the specified contents.
+   * Build a new matrice block with the specified contents.
    *
    * @param blockContents
    *   The contents of the block.
@@ -120,7 +120,7 @@ public class Matrice implements AsciiBlock {
   } // eqv(AsciiBlock)
 
   /**
-   * Determine if another Circle is structurally equivalent to this block.
+   * Determine if another Matrice is structurally equivalent to this block.
    *
    * @param other
    *   The block to compare to this block.
@@ -130,6 +130,6 @@ public class Matrice implements AsciiBlock {
    */
   public boolean eqv(Matrice other) {
     return ((this.paren == other.paren) && (this.contents.eqv(other.contents)));
-  } // eqv(Circle)
-} // class Circle
+  } // eqv(Matrice)
+} // class Matrice
 
