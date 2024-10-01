@@ -1,24 +1,24 @@
 package edu.grinnell.csc207.blocks;
 
 /**
- * A text block matrice.
+ * A text block Matrix.
  *
  * @author Sara Jaljaa
  * @author Jana Vadillo
  */
-public class Matrice implements AsciiBlock {
+public class Matrix implements AsciiBlock {
 
   // +--------+------------------------------------------------------------
   // | Fields |
   // +--------+
 
   /**
-   * The stuff in the matrice.
+   * The stuff in the Matrix.
    */
   AsciiBlock contents;
 
   /**
-   * The matrice outline.
+   * The Matrix outline.
    */
   char paren;
 
@@ -27,18 +27,18 @@ public class Matrice implements AsciiBlock {
   // +--------------+
 
   /**
-   * Build a new matrice block with the specified contents.
+   * Build a new matrix block with the specified contents.
    *
    * @param blockContents
    *   The contents of the block.
    *
    * @param outline
-   *   The outline of the matrice.
+   *   The outline of the matrix.
    */
-  public Matrice(AsciiBlock blockContents, char outline) {
+  public Matrix(AsciiBlock blockContents, char outline) {
     this.contents = blockContents;
     this.paren = outline;
-  } // Matrice(AsciiBlock)
+  } // Matrix(AsciiBlock)
 
   // +---------+-----------------------------------------------------------
   // | Methods |
@@ -116,11 +116,11 @@ public class Matrice implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return ((other instanceof Matrice) && (this.contents.eqv((Matrice) other)));
+    return ((other instanceof Matrix) && (this.contents.eqv((Matrix) other)));
   } // eqv(AsciiBlock)
 
   /**
-   * Determine if another Matrice is structurally equivalent to this block.
+   * Determine if another Matrix is structurally equivalent to this block.
    *
    * @param other
    *   The block to compare to this block.
@@ -128,8 +128,8 @@ public class Matrice implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and
    *     false otherwise.
    */
-  public boolean eqv(Matrice other) {
+  public boolean eqv(Matrix other) {
     return ((this.paren == other.paren) && (this.contents.eqv(other.contents)));
-  } // eqv(Matrice)
-} // class Matrice
+  } // eqv(Matrix)
+} // class Matrix
 

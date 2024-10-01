@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import edu.grinnell.csc207.blocks.HAlignment;
 import edu.grinnell.csc207.blocks.Lines;
-import edu.grinnell.csc207.blocks.Matrice;
+import edu.grinnell.csc207.blocks.Matrix;
 import edu.grinnell.csc207.blocks.VComp;
 import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.HFlip;
@@ -20,10 +20,10 @@ public class TestNewBlock {
   // +-------+
 
   /**
-   * Creating a matrice with VComp.
+   * Creating a matrix with VComp.
    */
   @Test
-  public void matriceVComp() {
+  public void matrixVComp() {
     assertEquals(
     new String(
         "  *                 *  \n" + 
@@ -32,18 +32,18 @@ public class TestNewBlock {
         "*    c D c D c D c    *\n" + 
         " *                   * \n" + 
         "  *                 *  " + "\n" + "\n")
- , TestUtils.toString(new Matrice(
+ , TestUtils.toString(new Matrix(
       new VComp(HAlignment.CENTER, 
         new Lines("a B a B a B a B a"), 
         new Lines ("c D c D c D c")), 
         '*')));
-  } // matriceVComp()
+  } // matrixVComp()
 
   /**
-   * Creating a matrice with only one element.
+   * Creating a matrix with only one element.
    */
   @Test
-  public void matriceSingleChar() {
+  public void matrixSingleChar() {
     assertEquals(
       new String(
       "  * *  \n" + 
@@ -51,14 +51,14 @@ public class TestNewBlock {
       "*  L  *\n" +
       " *   * \n" + 
       "  * *  \n" + "\n"), 
-      TestUtils.toString(new Matrice(new Line("L"), '*')));
-  } // matriceSingleChar()
+      TestUtils.toString(new Matrix(new Line("L"), '*')));
+  } // matrixSingleChar()
 
   /**
-   * Creating a matrice with HFlip.
+   * Creating a matrix with HFlip.
    */
   @Test
-  public void matriceHFlip() {
+  public void matrixHFlip() {
     assertEquals(
       new String(
     "  *                 *  \n" +
@@ -66,14 +66,14 @@ public class TestNewBlock {
     "*  olleH olleh olleH  *\n" +
     " *                   * \n" +
     "  *                 *  \n" + "\n"), 
-    TestUtils.toString(new Matrice(new HFlip(new Lines("Hello hello Hello")), '*')));
-  } // matriceHFlip()
+    TestUtils.toString(new Matrix(new HFlip(new Lines("Hello hello Hello")), '*')));
+  } // matrixHFlip()
 
   /**
-   * Creating a matrice with VFlip.
+   * Creating a matrix with VFlip.
    */
   @Test
-  public void matriceVFlip() {
+  public void matrixVFlip() {
     assertEquals(
       new String(
       "  *          *  \n" +
@@ -83,7 +83,7 @@ public class TestNewBlock {
       "*  Alphabet    *\n" +
       " *            * \n" +
       "  *          *  \n" + "\n"),
-    TestUtils.toString(new Matrice(new VFlip(new Lines(new String[] { "Alphabet", "Testing", "helloworld" })), '*')));
-  } // matriceVFlip()
+    TestUtils.toString(new Matrix(new VFlip(new Lines(new String[] { "Alphabet", "Testing", "helloworld" })), '*')));
+  } // matrixVFlip()
 
 } // class TestNewBlock

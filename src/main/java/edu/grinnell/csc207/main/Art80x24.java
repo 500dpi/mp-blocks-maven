@@ -44,9 +44,9 @@ public class Art80x24 {
    */
   public static AsciiBlock spider(char head) {
     AsciiBlock leftLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-      new Lines("  /\n\\_\\(\n _//\n  / ")});
+      new Lines(" ( \n\\_\\(\n _//\n  ( ")});
     AsciiBlock rightLegs = new VComp(HAlignment.CENTER, new AsciiBlock[] {
-      new Lines(" \\  \n)/_/\n\\\\_ \n \\  ")});
+      new Lines("  ) \n)/_/\n\\\\_ \n )  ")});
     AsciiBlock center = new VComp(HAlignment.CENTER, new AsciiBlock[] {
       new Line("|"),
       new Line("_"),
