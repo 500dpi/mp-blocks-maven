@@ -26,16 +26,16 @@ public class TestNewBlock {
   public void matrixVComp() {
     assertEquals(
     new String(
-        "  *                 *  \n" + 
-        " *                   * \n" + 
+        "  *                 *  \n" +
+        " *                   * \n" +
         "*  a B a B a B a B a  *\n" +
-        "*    c D c D c D c    *\n" + 
-        " *                   * \n" + 
+        "*    c D c D c D c    *\n" +
+        " *                   * \n" +
         "  *                 *  " + "\n" + "\n")
  , TestUtils.toString(new Matrix(
-      new VComp(HAlignment.CENTER, 
-        new Lines("a B a B a B a B a"), 
-        new Lines ("c D c D c D c")), 
+      new VComp(HAlignment.CENTER,
+        new Lines("a B a B a B a B a"),
+        new Lines ("c D c D c D c")),
         '*')));
   } // matrixVComp()
 
@@ -46,11 +46,11 @@ public class TestNewBlock {
   public void matrixSingleChar() {
     assertEquals(
       new String(
-      "  * *  \n" + 
-      " *   * \n" + 
+      "  * *  \n" +
+      " *   * \n" +
       "*  L  *\n" +
-      " *   * \n" + 
-      "  * *  \n" + "\n"), 
+      " *   * \n" +
+      "  * *  \n" + "\n"),
       TestUtils.toString(new Matrix(new Line("L"), '*')));
   } // matrixSingleChar()
 
@@ -61,12 +61,13 @@ public class TestNewBlock {
   public void matrixHFlip() {
     assertEquals(
       new String(
-    "  *                 *  \n" +
-    " *                   * \n" +
-    "*  olleH olleh olleH  *\n" +
-    " *                   * \n" +
-    "  *                 *  \n" + "\n"), 
-    TestUtils.toString(new Matrix(new HFlip(new Lines("Hello hello Hello")), '*')));
+    "  *    *  \n" +
+    " *      * \n" +
+    "*  4  3  *\n" +
+    "*  6  5  *\n" +
+    " *      * \n" +
+    "  *    *  \n" + "\n"),
+    TestUtils.toString(new Matrix(new HFlip(new Lines("3  4\n5  6\n")), '*')));
   } // matrixHFlip()
 
   /**
@@ -85,5 +86,4 @@ public class TestNewBlock {
       "  *          *  \n" + "\n"),
     TestUtils.toString(new Matrix(new VFlip(new Lines(new String[] { "Alphabet", "Testing", "helloworld" })), '*')));
   } // matrixVFlip()
-
 } // class TestNewBlock
