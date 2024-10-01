@@ -59,7 +59,7 @@ public class Art80x24 {
   } // spider(char)
 
   /**
-   * Creates artwork depicting a human trapped in a spider web.
+   * Creates the final artwork depicting a human trapped in a spider web.
    *
    * @param args
    *   Command-line arguments (currently ignored).
